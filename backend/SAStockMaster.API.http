@@ -1,0 +1,6 @@
+@SAStockMaster.API_HostAddress = http://localhost:5149
+
+GET {{SAStockMaster.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

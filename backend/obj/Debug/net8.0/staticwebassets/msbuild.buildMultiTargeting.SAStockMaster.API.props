@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/SAStockMaster.API.props" />
+</Project>

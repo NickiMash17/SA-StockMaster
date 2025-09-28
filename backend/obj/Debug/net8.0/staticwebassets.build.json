@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "itous5gr1c7tytuZcpeJQsuorMBqcIgGW+9V+SqMqUw=",
+  "Source": "SAStockMaster.API",
+  "BasePath": "_content/SAStockMaster.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
