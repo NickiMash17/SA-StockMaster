@@ -17,12 +17,12 @@ builder.Services.AddDbContext<StockMasterContext>(options =>
 builder.Services.AddScoped<IVATService, VATService>();
 builder.Services.AddScoped<IStockService, StockService>();
 
-// CORS
+// CORS - Updated to allow your frontend on port 5173
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
+        policy.WithOrigins("http://localhost:3000", "http://localhost:5173")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -38,7 +38,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowReactApp");
-app.UseHttpsRedirection();
+
+// *** FIX: COMMENT OUT THIS LINE TO STOP HTTPS REDIRECTION IN DEVELOPMENT ***
+// This line forces all HTTP traffic to HTTPS, leading to the ERR_CERT_AUTHORITY_INVALID issue.
+// app.UseHttpsRedirection(); 
+
 app.UseAuthorization();
 app.MapControllers();
 

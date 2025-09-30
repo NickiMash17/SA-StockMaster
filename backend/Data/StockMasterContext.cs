@@ -12,6 +12,7 @@ namespace SAStockMaster.API.Data
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<StockMovement> StockMovements { get; set; }
         public DbSet<Settings> Settings { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

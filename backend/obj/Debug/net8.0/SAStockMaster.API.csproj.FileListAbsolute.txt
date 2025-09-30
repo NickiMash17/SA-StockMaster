@@ -145,6 +145,7 @@
 /home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/SAStockMaster.API.csproj.CoreCompileInputs.cache
 /home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/SAStockMaster.API.MvcApplicationPartsAssemblyInfo.cs
 /home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/SAStockMaster.API.MvcApplicationPartsAssemblyInfo.cache
+/home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/SAStockMaster.API.sourcelink.json
 /home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/staticwebassets.build.json
 /home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/staticwebassets.development.json
 /home/nicolettemashaba/SA-StockMaster/backend/obj/Debug/net8.0/staticwebassets/msbuild.SAStockMaster.API.Microsoft.AspNetCore.StaticWebAssets.props
