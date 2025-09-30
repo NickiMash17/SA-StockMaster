@@ -81,7 +81,7 @@ Ensure you have the following installed:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/nicolettemashaba/SA-StockMaster.git
+git clone https://github.com/NickiMash17/SA-StockMaster.git
 cd SA-StockMaster
 ```
 
@@ -274,8 +274,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For issues or questions:
-- Create an issue in the [repository](https://github.com/nicolettemashaba/SA-StockMaster/issues)
-- Email: nicolettemashaba@yourdomain.com
+- Create an issue in the [repository](https://github.com/NickiMash17/SA-StockMaster/issues)
+- Email: nene171408@gmail.com
 
 ## 🙏 Acknowledgments
 
