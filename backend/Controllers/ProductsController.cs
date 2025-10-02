@@ -72,6 +72,34 @@ namespace SAStockMaster.API.Controllers
                 return BadRequest("Failed to update stock");
             return Ok();
         }
+
+        [HttpGet("test")]
+        public async Task<ActionResult<object>> TestDatabaseConnection()
+        {
+            try
+            {
+                var productCount = await _context.Products.CountAsync();
+                var categoryCount = await _context.Categories.CountAsync();
+                var supplierCount = await _context.Suppliers.CountAsync();
+                var warehouseCount = await _context.Warehouses.CountAsync();
+
+                return new
+                {
+                    Message = "Database connection successful",
+                    Data = new
+                    {
+                        Products = productCount,
+                        Categories = categoryCount,
+                        Suppliers = supplierCount,
+                        Warehouses = warehouseCount
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Database connection failed", Error = ex.Message });
+            }
+        }
     }
 
     public class StockUpdateRequest

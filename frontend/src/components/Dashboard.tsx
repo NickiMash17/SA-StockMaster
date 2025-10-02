@@ -8,7 +8,6 @@ import {
   TruckIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
-  ClockIcon,
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
   BuildingOfficeIcon,
@@ -17,9 +16,6 @@ import {
   CogIcon,
   BellIcon,
   MapPinIcon,
-  GlobeAltIcon,
-  ShieldCheckIcon,
-  CalculatorIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
 
@@ -70,35 +66,7 @@ const formatters = {
   },
 };
 
-// AI-Powered Analytics Engine
-class InventoryAnalytics {
-  static predictDemand(historicalData: number[], seasonality: number = 1.0): number {
-    if (historicalData.length < 3) return historicalData[historicalData.length - 1] || 0;
-    const trend = this.calculateTrend(historicalData);
-    const movingAverage = this.calculateMovingAverage(historicalData, 3);
-    const predicted = (movingAverage * trend * seasonality);
-    return Math.max(0, Math.round(predicted));
-  }
-  static calculateTrend(data: number[]): number {
-    if (data.length < 2) return 1;
-    const recent = data.slice(-3);
-    const older = data.slice(-6, -3);
-    const recentAvg = recent.reduce((a, b) => a + b, 0) / recent.length;
-    const olderAvg = older.length > 0 ? older.reduce((a, b) => a + b, 0) / older.length : recentAvg;
-    return olderAvg > 0 ? recentAvg / olderAvg : 1;
-  }
-  static calculateMovingAverage(data: number[], period: number): number {
-    if (data.length < period) return data.reduce((a, b) => a + b, 0) / data.length;
-    const recent = data.slice(-period);
-    return recent.reduce((a, b) => a + b, 0) / recent.length;
-  }
-  static optimizeReorderPoint(averageDemand: number, leadTime: number, safetyStock: number): number {
-    return Math.round((averageDemand * leadTime) + safetyStock);
-  }
-  static calculateSafetyStock(maxLeadTime: number, avgLeadTime: number, maxDemand: number, avgDemand: number): number {
-    return Math.round((maxLeadTime - avgLeadTime) * maxDemand + (maxDemand - avgDemand) * avgLeadTime);
-  }
-}
+
 
 // Enterprise Dashboard Data Interfaces
 interface InventoryMetrics {
@@ -368,7 +336,7 @@ const ComplianceTab: React.FC<{ metrics: ComplianceMetrics }> = ({ metrics }) =>
     </div>
 );
 
-const SuppliersTab: React.FC<{ metrics: SupplierMetrics }> = ({ metrics }) => (
+const SuppliersTab: React.FC<{ metrics: SupplierMetrics }> = ({ metrics: _ }) => (
   <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
     <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Performance</h3>
     <div className="overflow-x-auto">
@@ -534,7 +502,6 @@ const WarehousesTab: React.FC<{ metrics: WarehouseMetrics }> = ({ metrics: wareh
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<TabName>('overview');
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
   // Enterprise Data State
@@ -547,7 +514,7 @@ export default function Dashboard() {
     recentMovements: 156,
   });
 
-  const [financialMetrics, setFinancialMetrics] = useState<FinancialMetrics>({
+  const [financialMetrics] = useState<FinancialMetrics>({
     totalRevenue: 1250000,
     totalProfit: 375000,
     vatOwed: 187500,
@@ -556,7 +523,7 @@ export default function Dashboard() {
     averageOrderValue: 1250,
   });
 
-  const [supplierMetrics, setSupplierMetrics] = useState<SupplierMetrics>({
+  const [supplierMetrics] = useState<SupplierMetrics>({
     totalSuppliers: 45,
     activeSuppliers: 38,
     averageLeadTime: 7.2,
@@ -565,7 +532,7 @@ export default function Dashboard() {
     recentQuotes: 15,
   });
 
-  const [complianceMetrics, setComplianceMetrics] = useState<ComplianceMetrics>({
+  const [complianceMetrics] = useState<ComplianceMetrics>({
     beeScore: 72,
     beeLevel: 'Level 2',
     vatCompliance: 100,
@@ -574,7 +541,7 @@ export default function Dashboard() {
     taxCertificateValid: true,
   });
 
-  const [warehouseMetrics, setWarehouseMetrics] = useState<WarehouseMetrics>({
+  const [warehouseMetrics] = useState<WarehouseMetrics>({
     totalWarehouses: 3,
     totalCapacity: 50000,
     utilizedCapacity: 38500,
@@ -583,7 +550,7 @@ export default function Dashboard() {
     pendingTransfers: 2,
   });
 
-  const [aiInsights, setAiInsights] = useState<AIInsights>({
+  const [aiInsights] = useState<AIInsights>({
     demandForecast: [1250, 1380, 1420, 1350, 1480],
     reorderRecommendations: [
       {
@@ -665,23 +632,7 @@ export default function Dashboard() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center p-8 bg-white rounded-lg shadow-lg">
-          <ExclamationTriangleIcon className="h-12 w-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Error Loading Dashboard</h2>
-          <p className="text-gray-600">{error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-4 lg:p-6">

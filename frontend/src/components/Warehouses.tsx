@@ -4,7 +4,7 @@ import {
   ChartBarIcon,
   CheckCircleIcon,
   TruckIcon,
-  TrendingUpIcon,
+  ArrowTrendingUpIcon,
 } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 
@@ -41,39 +41,39 @@ interface WarehouseMetrics {
   pendingTransfers: number;
 }
 
-const StatCard = ({ title, value, icon: Icon, color, isCurrency, isPercentage, change }: { title: string, value: any, icon: any, color: string, isCurrency?: boolean, isPercentage?: boolean, change?: { value: number, trend: 'up' | 'down' } }) => {
-    const colors = {
-      green: 'text-green-600',
-      blue: 'text-blue-600',
-      purple: 'text-purple-600',
-      indigo: 'text-indigo-600',
-      yellow: 'text-yellow-600',
-    };
-  
-    return (
-      <motion.div
-        className="bg-white rounded-xl shadow-lg p-5 border border-gray-100"
-        whileHover={{ scale: 1.03 }}
-      >
-        <div className="flex items-center">
-          <div className={`rounded-full p-3 bg-${color}-100`}>
-            <Icon className={`h-6 w-6 ${colors[color]}`} />
-          </div>
-          <div className="ml-4">
-            <p className="text-sm font-medium text-gray-500 truncate">{title}</p>
-            <p className="text-2xl font-bold text-gray-900">
-              {isCurrency ? formatters.currency(value) : value}
-              {isPercentage && '%'}
-            </p>
-          </div>
-        </div>
-      </motion.div>
-    );
+const StatCard = ({ title, value, icon: Icon, color, isCurrency, isPercentage }: { title: string, value: any, icon: any, color: string, isCurrency?: boolean, isPercentage?: boolean }) => {
+const colors: Record<string, string> = {
+  green: 'text-green-600',
+  blue: 'text-blue-600',
+  purple: 'text-purple-600',
+  indigo: 'text-indigo-600',
+  yellow: 'text-yellow-600',
+};
+
+return (
+  <motion.div
+    className="bg-white rounded-xl shadow-lg p-5 border border-gray-100"
+    whileHover={{ scale: 1.03 }}
+  >
+    <div className="flex items-center">
+      <div className={`rounded-full p-3 bg-${color}-100`}>
+        <Icon className={`h-6 w-6 ${colors[color]}`} />
+      </div>
+      <div className="ml-4">
+        <p className="text-sm font-medium text-gray-500 truncate">{title}</p>
+        <p className="text-2xl font-bold text-gray-900">
+          {isCurrency ? formatters.currency(value) : value}
+          {isPercentage && '%'}
+        </p>
+      </div>
+    </div>
+  </motion.div>
+);
   };
 
 export default function Warehouses() {
   const [isLoading, setIsLoading] = useState(true);
-  const [warehouseMetrics, setWarehouseMetrics] = useState<WarehouseMetrics>({
+  const [warehouseMetrics] = useState<WarehouseMetrics>({
     totalWarehouses: 3,
     totalCapacity: 50000,
     utilizedCapacity: 38500,
@@ -116,7 +116,7 @@ export default function Warehouses() {
             <StatCard
               title="Utilized Capacity"
               value={warehouseMetrics.utilizedCapacity}
-              icon={TrendingUpIcon}
+              icon={ArrowTrendingUpIcon}
               color="yellow"
             />
             <StatCard
@@ -184,8 +184,7 @@ export default function Warehouses() {
                 </div>
               </div>
             </div>
-            <div className="bg-w
-hite rounded-xl shadow-lg p-6 border border-gray-100">
+            <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Geographic Distribution</h3>
               {/* Placeholder for a map component */}
               <div className="h-48 bg-gray-200 rounded-lg flex items-center justify-center">
