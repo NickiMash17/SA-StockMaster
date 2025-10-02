@@ -1,15 +1,26 @@
-// ~/SA-StockMaster/frontend/tsconfig.node.json
-
 {
   "compilerOptions": {
-    "composite": true, // <-- THIS IS THE REQUIRED FIX
-    "module": "ESNext",
-    "moduleResolution": "bundler", // Often 'bundler' or 'node'
-    "allowSyntheticDefaultImports": true,
     "target": "ES2020",
-    "strict": true,
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ES2020"]
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["vite.config.ts"]
+  "include": ["src"]
 }
