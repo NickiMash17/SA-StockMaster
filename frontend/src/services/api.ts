@@ -3,9 +3,15 @@ import {
   Product, 
   Category, 
   Supplier, 
-  DashboardStats, 
   Settings, 
-  StockMovement 
+  StockMovement,
+  InventoryMetrics,
+  FinancialMetrics,
+  DashboardStats,
+  SupplierMetrics,
+  ComplianceMetrics,
+  WarehouseMetrics,
+  AIInsights
 } from '../types';
 
 // Use Vite's environment variables
@@ -125,18 +131,36 @@ export const stockMovementsAPI = {
     api.post('/stockmovements', movement),
 
   getSummary: (productId?: number, period: string = '30d'): Promise<AxiosResponse<{in: number, out: number}>> =>
-    api.get('/stockmovements/summary', { 
-      params: { productId, period } 
+    api.get('/stockmovements/summary', {
+      params: { productId, period }
     }),
 };
 
 export const dashboardAPI = {
-  getStats: (): Promise<AxiosResponse<DashboardStats>> => 
+  getDashboardStats: (): Promise<AxiosResponse<DashboardStats>> =>
     api.get('/dashboard/stats'),
+    
+  getInventoryMetrics: (): Promise<AxiosResponse<InventoryMetrics>> =>
+    api.get('/dashboard/inventory-metrics'),
+    
+  getFinancialMetrics: (): Promise<AxiosResponse<FinancialMetrics>> =>
+    api.get('/dashboard/financial-metrics'),
+    
+  getSupplierMetrics: (): Promise<AxiosResponse<SupplierMetrics>> =>
+    api.get('/dashboard/supplier-metrics'),
+    
+  getComplianceMetrics: (): Promise<AxiosResponse<ComplianceMetrics>> =>
+    api.get('/dashboard/compliance-metrics'),
+    
+  getWarehouseMetrics: (): Promise<AxiosResponse<WarehouseMetrics>> =>
+    api.get('/dashboard/warehouse-metrics'),
+    
+  getAIInsights: (): Promise<AxiosResponse<AIInsights>> =>
+    api.get('/dashboard/ai-insights'),
 };
 
 export const settingsAPI = {
-  get: (): Promise<AxiosResponse<Settings>> => 
+  getSettings: (): Promise<AxiosResponse<Settings>> =>
     api.get('/settings'),
     
   update: (settings: Settings): Promise<AxiosResponse<Settings>> => 

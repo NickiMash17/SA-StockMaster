@@ -43,7 +43,6 @@ const Reports = () => {
     totalSuppliers: 12,
     lowStockItems: 5
   });
-  const [products, setProducts] = useState<Product[]>([]);
   const [stockMovements, setStockMovements] = useState<StockMovement[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

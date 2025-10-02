@@ -23,7 +23,7 @@ namespace SAStockMaster.API.Controllers
             if (settings == null)
             {
                 // Create default settings if none exist
-                settings = new Settings { Id = 1, VATRegistered = true, VATRate = 0.15m };
+                settings = new Settings { SettingsId = 1, EnableVATCalculation = true, DefaultVATRate = 0.15m };
                 _context.Settings.Add(settings);
                 await _context.SaveChangesAsync();
             }
@@ -33,7 +33,7 @@ namespace SAStockMaster.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateSettings(Settings settings)
         {
-            if (settings.Id != 1)
+            if (settings.SettingsId != 1)
             {
                 return BadRequest("Can only update the main settings record");
             }
@@ -61,7 +61,7 @@ namespace SAStockMaster.API.Controllers
 
         private bool SettingsExists(int id)
         {
-            return _context.Settings.Any(e => e.Id == id);
+            return _context.Settings.Any(e => e.SettingsId == id);
         }
     }
 }
